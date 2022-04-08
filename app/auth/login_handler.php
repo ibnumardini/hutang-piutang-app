@@ -30,6 +30,9 @@ if (isset($_POST["action"])) {
 
                     $_SESSION['user'] = $result;
 
+                    // remove password from session
+                    unset($_SESSION['user']['password']);
+
                     header("Location: /app/index.php");
                     exit;
                 }
