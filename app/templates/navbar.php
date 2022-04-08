@@ -9,10 +9,10 @@
             <div class="d-md-flex justify-content-between w-100">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/app/index.php">Home</a>
+                        <a class="nav-link <?= $page_now === 'home' ? 'active' : '' ?>" aria-current="page" href="/app/index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/app/index.php?page=transactions">Transactions</a>
+                        <a class="nav-link <?= $page_now === 'transactions' ? 'active' : '' ?>" aria-current="page" href="/app/index.php?page=transactions">Transactions</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
