@@ -1,8 +1,8 @@
 <?php
 
-// if (isset($_SESSION['user'])) {
-//     header('Location: /app/index.php');
-// }
+if (isset($_SESSION['user'])) {
+    header('Location: /app/index.php');
+}
 
 $page = "Login";
 
