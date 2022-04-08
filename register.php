@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION['user'])) {
+    header('Location: /app/index.php');
+}
+
 $page = "Register";
 
 include_once __DIR__ . '/app/templates/header.php';
