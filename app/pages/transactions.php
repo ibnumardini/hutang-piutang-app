@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="mb-3">Transactions</h1>
+    <h1 class="mb-3">Transactions - <?= $where === "debt" ? "Hutang" : "Piutang" ?></h1>
 
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
