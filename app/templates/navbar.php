@@ -11,8 +11,15 @@
                     <li class="nav-item">
                         <a class="nav-link <?= $page_now === 'home' ? 'active' : '' ?>" aria-current="page" href="/app/index.php">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <?= $page_now === 'transactions' ? 'active' : '' ?>" aria-current="page" href="/app/index.php?page=transactions">Transactions</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle <?= $page_now === 'transactions' ? 'active' : '' ?>" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Transactions
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=debt">Hutang</a></li>
+                            <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=receivable">Piutang</a></li>
+                        </ul>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
