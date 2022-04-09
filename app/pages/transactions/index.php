@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="mb-3">Transactions - <?= $where === "debt" ? "Hutang" : "Piutang" ?></h1>
 
-    <a href="/app/pages/transactions/create.php" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Tambah</a>
+    <a href="/app/index.php?page=transactions&action=create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Tambah</a>
 
     <table class="table table-striped table-bordered mt-4">
         <thead class="table-dark">
