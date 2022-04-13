@@ -1,5 +1,7 @@
 <?php
 
+$page = "Transactions";
+
 if (isset($_GET['view'])) {
     switch ($_GET['view']) {
         case 'debt':
