@@ -8,6 +8,8 @@ if (!isset($_SESSION['user'])) {
 
 include_once '../configs/db.php';
 
+$session_user_id = $_SESSION['user']['id'];
+
 include_once './handlers/home_handler.php';
 include_once './handlers/transactions/transaction_handler.php';
 include_once './handlers/transactions/create_trx_handler.php';
