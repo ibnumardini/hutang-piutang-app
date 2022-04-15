@@ -23,7 +23,7 @@
             ?>
             <tr>
                 <td><?= $num++ ?></td>
-                <td><?= $transaction['user_for'] ?></td>
+                <td><?= $transaction['use_for'] ?></td>
                 <td><?= $transaction['person_id'] ?></td>
                 <td><?= $transaction['nominal'] ?></td>
                 <td>
