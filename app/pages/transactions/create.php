@@ -31,8 +31,9 @@
                     <label for="fav_person" class="form-label">Orang Favorit</label>
                     <select class="form-select" name="fav_person" id="fav_person">
                         <option value="">Pilih Orang Favorit</option>
-                        <option value="1">Budi</option>
-                        <option value="2">Joko</option>
+                        <?php foreach($persons as $person) : ?>
+                            <option value="<?= $person['id'] ?>"><?= $person['name'] ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="mb-3">

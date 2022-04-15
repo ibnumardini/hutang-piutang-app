@@ -81,3 +81,19 @@ if (isset($_POST["action"])) {
         }
     }
 }
+
+// to show list person
+function get_all_person($con)
+{
+    $person = mysqli_query($con, "SELECT * FROM persons");
+
+    $persons = [];
+
+    while ($row = mysqli_fetch_assoc($person)) {
+        array_push($persons, $row);
+    }
+
+    return $persons;
+}
+
+$persons = get_all_person($con);
