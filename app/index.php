@@ -19,6 +19,9 @@ include_once './templates/navbar.php';
 
 if (isset($_GET['page'])) {
     switch ($_GET['page']) {
+        case 'profile':
+            include_once './pages/profile/index.php';
+            break;
         case 'transactions':
             if (isset($_GET['action'])) {
                 switch ($_GET['action']) {
