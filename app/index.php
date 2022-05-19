@@ -11,6 +11,7 @@ include_once '../configs/db.php';
 $session_user_id = $_SESSION['user']['id'];
 
 include_once './handlers/home_handler.php';
+include_once './handlers/profile/profile_handler.php';
 include_once './handlers/transactions/transaction_handler.php';
 include_once './handlers/transactions/create_trx_handler.php';
 
@@ -20,7 +21,18 @@ include_once './templates/navbar.php';
 if (isset($_GET['page'])) {
     switch ($_GET['page']) {
         case 'profile':
-            include_once './pages/profile/index.php';
+            if (isset($_GET['action'])) {
+                switch ($_GET['action']) {
+                    case 'edit':
+                        include_once './pages/profile/edit.php';
+                        break;
+                    default:
+                        include_once './pages/profile/index.php';
+                        break;
+                }
+            } else {
+                include_once './pages/profile/index.php';
+            }
             break;
         case 'transactions':
             if (isset($_GET['action'])) {
