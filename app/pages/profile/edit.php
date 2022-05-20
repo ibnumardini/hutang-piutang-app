@@ -2,6 +2,25 @@
     <h1>Edit Profile</h1>
     <div class="row">
         <div class="col-md-6">
+        <?php
+            
+            if(isset($alert)) :
+                ?>
+            <div class="alert alert-<?= $alert[0] ?> alert-dismissible fade show" role="alert">
+                <ul class="mb-0">
+                    <?php
+                    
+                    foreach ($alert[1] as $alert_msg) {
+                        echo '<li><strong>'. $alert_msg .'</strong></li>';
+                    }
+
+                    ?>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php
+            endif;
+            ?>
             <form method="post">
                 <div class="mb-3">
                     <label for="fullname" class="form-label">Full Name</label>
@@ -13,7 +32,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
-                    <input type="text" class="form-control" id="email" name="email" value="<?= $user['email'] ?>">
+                    <input type="email" class="form-control" id="email" name="email" value="<?= $user['email'] ?>">
                 </div>
                 <div class="mb-3">
                     <label for="wa_num" class="form-label">Whatsapp Number</label>
@@ -28,6 +47,7 @@
                     <input class="form-control" type="file" id="avatar" name="avatar">
                 </div>
                 <div class="mb-3">
+                    <input type="hidden" name="action" value="edit_profile">
                     <button class="btn btn-primary"><i class="bi bi-device-hdd-fill"></i> Save</button>
                 <div>
             </form>
