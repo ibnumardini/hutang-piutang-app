@@ -42,6 +42,8 @@ if (isset($_POST["action"])) {
 
             if ($update) {
                 $alert = ['success', ['Data di update!']];
+
+                $_SESSION['user']['name'] = $fullname;
             } else {
                 $alert = ['danger', 'Data gagal update!'];
             }
