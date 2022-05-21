@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_POST["action"])) {
     if ($_POST["action"] === "edit_profile") {
         $fullname = htmlspecialchars($_POST['fullname']);
@@ -11,7 +10,6 @@ if (isset($_POST["action"])) {
         $errors = [];
 
         unset($_POST['password']);
-        unset($_POST['avatar']); //* cek lagi ntar!
 
         foreach ($_POST as $key => $val) {
             if (empty($val)) {
@@ -36,14 +34,19 @@ if (isset($_POST["action"])) {
                 $query .= ", password='$password'";
             }
 
+            if (isset($_FILES['avatar'])) {
+                [$moved, $avatar_name] = upload_avatar();
+                if ($moved) {
+                    $query .= ", avatar='$avatar_name'";
+                }
+            }
+
             $query .= " WHERE id = '$session_user_id'";
 
             $update = mysqli_query($con, $query);
 
             if ($update) {
                 $alert = ['success', ['Data di update!']];
-
-                $_SESSION['user']['name'] = $fullname;
             } else {
                 $alert = ['danger', 'Data gagal update!'];
             }
@@ -51,4 +54,20 @@ if (isset($_POST["action"])) {
             $alert = ['danger', $errors];
         }
     }
+}
+
+function upload_avatar()
+{
+    $avatar = $_FILES['avatar'];
+    global $session_user_id;
+
+    $imageFileType = strtolower(pathinfo($avatar['name'], PATHINFO_EXTENSION));
+
+    $target_dir = "../public/avatar/";
+    $avatar_name = $session_user_id . "_" . time() . "." . $imageFileType;
+    $target_file = $target_dir . $avatar_name;
+
+    $moved = move_uploaded_file($avatar['tmp_name'], $target_file);
+
+    return [$moved, $avatar_name];
 }

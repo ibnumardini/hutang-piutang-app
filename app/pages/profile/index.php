@@ -4,7 +4,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <img src="<?=$user['avatar'] ? $user['avatar'] : 'https://placekitten.com/300/300'?>"
+                    <img src="<?=$user['avatar'] ? '/public/avatar/' . $user['avatar'] : 'https://placekitten.com/300/300'?>"
                         class="avatar card-img-top img-thumbnail" alt="Muhammad Fatkurozi">
                 </div>
             </div>

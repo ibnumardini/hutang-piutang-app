@@ -21,7 +21,7 @@
             <?php
             endif;
             ?>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="fullname" class="form-label">Full Name</label>
                     <input type="text" class="form-control" id="fullname" name="fullname" value="<?= $user['name'] ?>">
