@@ -27,18 +27,17 @@ if (isset($_POST["action"])) {
             array_push($errors, "Password kurang dari 6!");
         }
 
+        
         // validasi image file
         if (isset($_FILES['avatar'])) {
-            [$moved, $avatar_name, $type, $size] = upload_avatar();
+            $error_code = $_FILES['avatar']['error'];
 
-            $allowableFileType = ['jpg', 'jpeg', 'png', 'gif'];
+            if ($error_code === 0) {
+                [$moved, $avatar_name, $errors_msg] = upload_avatar();
 
-            if (!in_array($type, $allowableFileType)) {
-                array_push($errors, "Avatar tidak di valid!");
-            }
-
-            if ($size > 1000000) {
-                array_push($errors, "Avatar harus lebih kecil dari 1 mb!");
+                if (!$moved) {
+                    array_push($errors, ...$errors_msg);
+                }
             }
         }
 
@@ -75,16 +74,31 @@ function upload_avatar()
 
     $imageFileType = strtolower(pathinfo($avatar['name'], PATHINFO_EXTENSION));
 
+    $allowableFileType = ['jpg', 'jpeg', 'png', 'gif'];
+
+    $errors = [];
+
+    // if ext not valid, reject!
+    if (!in_array($imageFileType, $allowableFileType)) {
+        array_push($errors, "Avatar tidak di valid!");
+    }
+
+    // if bigger than 1 mb, reject!
+    if ($avatar['size'] > 1000000) {
+        array_push($errors, "Avatar harus lebih kecil dari 1 mb!");
+    }
+
     $target_dir = "../public/avatar/";
     $avatar_name = $session_user_id . "_" . time() . "." . $imageFileType;
     $target_file = $target_dir . $avatar_name;
 
-    $moved = move_uploaded_file($avatar['tmp_name'], $target_file);
+    if (empty($errors)) {
+        $moved = move_uploaded_file($avatar['tmp_name'], $target_file);
+    }
 
     return [
         $moved,
         $avatar_name,
-        $imageFileType,
-        $avatar['size'],
+        $errors,
     ];
 }
