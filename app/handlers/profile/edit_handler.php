@@ -27,6 +27,21 @@ if (isset($_POST["action"])) {
             array_push($errors, "Password kurang dari 6!");
         }
 
+        // validasi image file
+        if (isset($_FILES['avatar'])) {
+            [$moved, $avatar_name, $type, $size] = upload_avatar();
+
+            $allowableFileType = ['jpg', 'jpeg', 'png', 'gif'];
+
+            if (!in_array($type, $allowableFileType)) {
+                array_push($errors, "Avatar tidak di valid!");
+            }
+
+            if ($size > 1000000) {
+                array_push($errors, "Avatar harus lebih kecil dari 1 mb!");
+            }
+        }
+
         if (empty($errors)) {
             $query = "UPDATE users SET name='$fullname', username='$username', email='$email', wa_num='$wa_num'";
 
@@ -34,11 +49,8 @@ if (isset($_POST["action"])) {
                 $query .= ", password='$password'";
             }
 
-            if (isset($_FILES['avatar'])) {
-                [$moved, $avatar_name] = upload_avatar();
-                if ($moved) {
-                    $query .= ", avatar='$avatar_name'";
-                }
+            if ($moved) {
+                $query .= ", avatar='$avatar_name'";
             }
 
             $query .= " WHERE id = '$session_user_id'";
@@ -69,5 +81,10 @@ function upload_avatar()
 
     $moved = move_uploaded_file($avatar['tmp_name'], $target_file);
 
-    return [$moved, $avatar_name];
+    return [
+        $moved,
+        $avatar_name,
+        $imageFileType,
+        $avatar['size'],
+    ];
 }
