@@ -17,8 +17,9 @@ if (isset($_GET['page'])) {
             include_once './handlers/profile/profile_handler.php';
             break;
         case 'transactions':
-            include_once './handlers/transactions/transaction_handler.php';
             include_once './handlers/transactions/create_trx_handler.php';
+            include_once './handlers/transactions/delete_trx_hanlder.php';
+            include_once './handlers/transactions/transaction_handler.php';
             break;
         default:
             include_once './handlers/home/home_handler.php';
