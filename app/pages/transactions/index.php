@@ -55,9 +55,33 @@
                 <td><?=$transaction['name']?></td>
                 <td><?=$transaction['nominal']?></td>
                 <td>
-                    <span class="badge bg-danger">
-                        <?=$transaction['status']?>
-                    </span>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="badge bg-<?= $transaction['status_badge_color'][0] ?> <?= $transaction['status_badge_color'][1] ?>">
+                                <?=$transaction['status']?>
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <?php foreach ($transaction['trx_status'] as $ts) : ?>
+                                <form method="post">
+                                    <input type="hidden" name="id" value="<?=$transaction['id']?>">
+                                    <input type="hidden" name="action" value="change_trx_status">
+                                    <input type="hidden" name="trx_status" value="<?= $ts ?>">
+                                    <button type="submit" class="dropdown-item"><?= ucwords($ts) ?></button>
+                                </form>
+                                <?php endforeach; ?>
+                            </li>
+
+                            <?php if(count($transaction['trx_status']) === 1 && $transaction['status'] !== 'paid') : ?>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Installment</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
                 </td>
                 <td><?=date("d F Y H:i:s", strtotime($transaction['due_date']));?></td>
                 <td>

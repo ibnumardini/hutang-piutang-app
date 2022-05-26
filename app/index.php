@@ -19,6 +19,7 @@ if (isset($_GET['page'])) {
         case 'transactions':
             include_once './handlers/transactions/create_trx_handler.php';
             include_once './handlers/transactions/delete_trx_hanlder.php';
+            include_once './handlers/transactions/change_trx_status_handler.php';
             include_once './handlers/transactions/transaction_handler.php';
             break;
         default:

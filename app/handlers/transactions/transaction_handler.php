@@ -23,5 +23,32 @@ $query = mysqli_query($con, "SELECT t.id, t.type, t.user_id, t.use_for, t.person
 $transactions = [];
 
 while ($row = mysqli_fetch_assoc($query)) {
+    $row['trx_status'] = [];
+
+    switch ($row['status']) {
+        case 'paid':
+            $row['status_badge_color'] = [
+                'success', '',
+            ];
+
+            array_push($row['trx_status'], 'unpaid');
+            break;
+        case 'unpaid':
+            $row['status_badge_color'] = [
+                'danger', '',
+            ];
+
+            array_push($row['trx_status'], 'paid');
+            break;
+        default:
+            $row['status_badge_color'] = [
+                'warning', 'text-dark',
+            ];
+
+            array_push($row['trx_status'], 'paid');
+            array_push($row['trx_status'], 'unpaid');
+            break;
+    }
+
     array_push($transactions, $row);
 }
