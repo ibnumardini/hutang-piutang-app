@@ -18,11 +18,21 @@ if (isset($_GET['view'])) {
     $title = "Hutang";
 }
 
-$query = mysqli_query($con, "SELECT t.id, t.type, t.user_id, t.use_for, t.person_id, t.nominal, t.temp_nominal, t.status, t.transaction_at, t.due_date, t.created_at, t.updated_at, p.name FROM transactions as t LEFT JOIN persons as p ON t.person_id = p.id WHERE t.type = '$where' AND t.user_id='$session_user_id'");
+$query = "SELECT t.id, t.type, t.user_id, t.use_for, t.person_id, t.nominal, t.temp_nominal, t.status, t.transaction_at, t.due_date, t.created_at, t.updated_at, p.name FROM transactions as t LEFT JOIN persons as p ON t.person_id = p.id WHERE t.type = '$where' AND t.user_id='$session_user_id'";
+
+if (isset($_GET['action'])) {
+    if ($_GET['action'] === 'installment' && isset($_GET['id'])) {
+        $trx_id = $_GET['id'];
+
+        $query .= " AND t.id = $trx_id";
+    }
+}
+
+$select = mysqli_query($con, $query);
 
 $transactions = [];
 
-while ($row = mysqli_fetch_assoc($query)) {
+while ($row = mysqli_fetch_assoc($select)) {
     $row['trx_status'] = [];
 
     switch ($row['status']) {

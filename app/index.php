@@ -20,7 +20,9 @@ if (isset($_GET['page'])) {
             include_once './handlers/transactions/create_trx_handler.php';
             include_once './handlers/transactions/delete_trx_hanlder.php';
             include_once './handlers/transactions/change_trx_status_handler.php';
+            include_once './handlers/transactions/update_installment_trx_handler.php';
             include_once './handlers/transactions/transaction_handler.php';
+            include_once './handlers/transactions/edit_installment_trx_handler.php';
             break;
         default:
             include_once './handlers/home/home_handler.php';
@@ -55,6 +57,9 @@ if (isset($_GET['page'])) {
                 switch ($_GET['action']) {
                     case 'create':
                         include_once './pages/transactions/create.php';
+                        break;
+                    case 'installment':
+                        include_once './pages/transactions/installment.php';
                         break;
                     default:
                         include_once './pages/transactions/index.php';

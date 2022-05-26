@@ -53,7 +53,7 @@
                 <td><?=$num++?></td>
                 <td><?=$transaction['use_for']?></td>
                 <td><?=$transaction['name']?></td>
-                <td><?=$transaction['nominal']?></td>
+                <td><?=to_rupiah($transaction['nominal'])?></td>
                 <td>
                     <div class="btn-group">
                         <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
@@ -78,7 +78,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Installment</a></li>
+                                <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=debt&action=installment&id=<?= $transaction['id'] ?>">Installment</a></li>
                             <?php endif; ?>
                         </ul>
                     </div>
