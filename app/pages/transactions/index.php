@@ -46,7 +46,6 @@
         <tbody>
             <?php
                 $num = 1;
-
                 foreach ($transactions as $transaction):
                 ?>
             <tr>
@@ -74,7 +73,7 @@
                                 <?php endforeach; ?>
                             </li>
 
-                            <?php if(count($transaction['trx_status']) === 1 && $transaction['status'] !== 'paid') : ?>
+                            <?php if((count($transaction['trx_status']) === 1 && $transaction['status'] !== 'paid') || $transaction['status'] === 'installment') : ?>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
