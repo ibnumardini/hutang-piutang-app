@@ -8,7 +8,7 @@
                     <h5 class="card-title text-center">Jumlah Hutang</h5>
                     <hr>
                     <p class="card-text d-flex justify-content-center align-items-center">
-                        <span style="font-size: 2rem" class="fw-bold">1.000.000,00</span>
+                        <span class="fw-bold fs-4"><?= to_rupiah($resultDebt['nominal']) ?></span>
                     </p>
                 </div>
             </div>
@@ -19,7 +19,7 @@
                     <h5 class="card-title text-center">Jumlah Piutang</h5>
                     <hr>
                     <p class="card-text d-flex justify-content-center align-items-center">
-                        <span style="font-size: 2rem" class="fw-bold">1.000.000,00</span>
+                        <span class="fw-bold fs-4"><?= to_rupiah($resultReceivable['nominal']) ?></span>
                     </p>
                 </div>
             </div>
