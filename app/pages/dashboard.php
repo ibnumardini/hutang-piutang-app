@@ -30,7 +30,7 @@
                     <h5 class="card-title text-center">Jumlah Trx Hutang</h5>
                     <hr>
                     <p class="card-text d-flex justify-content-center align-items-center">
-                        <span class="display-4 fw-bold">10</span>
+                        <span class="display-4 fw-bold"><?= $resultCountDebt ?></span>
                     </p>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <h5 class="card-title text-center">Jumlah Trx Piutang</h5>
                     <hr>
                     <p class="card-text d-flex justify-content-center align-items-center">
-                        <span class="display-4 fw-bold">10</span>
+                        <span class="display-4 fw-bold"><?= $resultCountReceivable ?></span>
                     </p>
                 </div>
             </div>
