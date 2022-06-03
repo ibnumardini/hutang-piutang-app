@@ -5,7 +5,7 @@ if (isset($_POST['action'])) {
         $trx_id = $_POST['id'];
         $trx_status = $_POST['trx_status'];
 
-        $query = mysqli_query($con, "UPDATE `transactions` SET `status`='$trx_status' WHERE id = '$trx_id' AND user_id = '$session_user_id';");
+        $query = mysqli_query($con, "UPDATE `transactions` SET `status`='$trx_status', temp_nominal = 0 WHERE id = '$trx_id' AND user_id = '$session_user_id';");
 
         if ($query) {
             $alert = ['success', ['Berhasil di update!']];
