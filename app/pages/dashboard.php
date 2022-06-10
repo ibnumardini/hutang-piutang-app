@@ -54,7 +54,7 @@
                     <ol>
                         <li><?= ucwords($namesValueDebt[0]) ?></li>
                     </ol>
-                    <a href="#" class="btn btn-link text-white">More..</a>
+                    <a href="/app/index.php?page=most-freq-trx&view=debt" class="btn btn-link text-white">More..</a>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                     <ol>
                         <li><?= ucwords($namesValueReceivable[0]) ?></li>
                     </ol>
-                    <a href="#" class="btn btn-link text-white">More..</a>
+                    <a href="/app/index.php?page=most-freq-trx&view=receivable" class="btn btn-link text-white">More..</a>
                 </div>
             </div>
         </div>

@@ -12,6 +12,9 @@ include_once './handlers/main_handler.php';
 
 if (isset($_GET['page'])) {
     switch ($_GET['page']) {
+        case 'most-freq-trx':
+            include_once './handlers/persons/person_handler.php';
+            break;
         case 'profile':
             include_once './handlers/profile/edit_handler.php';
             include_once './handlers/profile/profile_handler.php';
@@ -38,6 +41,9 @@ include_once './templates/navbar.php';
 if (isset($_GET['page'])) {
 
     switch ($_GET['page']) {
+        case 'most-freq-trx':
+            include_once './pages/persons/index.php';
+            break;
         case 'profile':
             if (isset($_GET['action'])) {
                 switch ($_GET['action']) {
