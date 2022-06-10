@@ -52,7 +52,7 @@
                     <h5 class="card-title text-center">Paling Sering Hutang</h5>
                     <hr>
                     <ol>
-                        <li>Fulan bin Fulan</li>
+                        <li><?= ucwords($namesValueDebt[0]) ?></li>
                     </ol>
                     <a href="#" class="btn btn-link text-white">More..</a>
                 </div>
@@ -64,7 +64,7 @@
                     <h5 class="card-title text-center">Paling Sering Piutang</h5>
                     <hr>
                     <ol>
-                        <li>Fulan bin Fulan</li>
+                        <li><?= ucwords($namesValueReceivable[0]) ?></li>
                     </ol>
                     <a href="#" class="btn btn-link text-white">More..</a>
                 </div>
