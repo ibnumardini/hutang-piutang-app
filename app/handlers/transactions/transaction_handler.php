@@ -28,6 +28,14 @@ if (isset($_GET['action'])) {
     }
 }
 
+if (isset($_POST['action'])) {
+    if ($_POST['action'] === 'search') {
+        $search = htmlspecialchars($_POST['search']);
+
+        $query .= " AND t.use_for like '%$search%' ";
+    }
+}
+
 $select = mysqli_query($con, $query);
 
 $transactions = [];
