@@ -17,3 +17,10 @@ function dateRfc3309($datetime)
 {
     return date('Y-m-d\TH:i:s', strtotime($datetime));
 }
+
+function fmt_to_timestamp($date)
+{
+    $date = str_replace("T", " ", $date);
+
+    return $date;
+}

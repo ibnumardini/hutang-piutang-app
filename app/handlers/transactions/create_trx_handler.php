@@ -1,11 +1,4 @@
 <?php
-function fmt_to_timestamp($date)
-{
-    $date = str_replace("T", " ", $date);
-    $date = $date . ":00";
-
-    return $date;
-}
 
 function insert_persons($con, $name)
 {
@@ -42,10 +35,15 @@ if (isset($_POST["action"])) {
         $fav_person = htmlspecialchars($_POST['fav_person']);
         $new_person = htmlspecialchars($_POST['new_person']);
         $nominal = htmlspecialchars($_POST['nominal']);
+
         $transaction_at = htmlspecialchars($_POST['transaction_at']);
         $transaction_at = fmt_to_timestamp($transaction_at);
+        $transaction_at = $transaction_at . ":00";
+
         $due_date = htmlspecialchars($_POST['due_date']);
         $due_date = fmt_to_timestamp($due_date);
+        $due_date = $due_date . ":00";
+
         $type = htmlspecialchars($_POST['type']);
 
         if (empty($fav_person)) {
