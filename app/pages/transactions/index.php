@@ -87,9 +87,10 @@ foreach ($transactions as $transaction):
                 </td>
                 <td><?=date("d F Y H:i:s", strtotime($transaction['due_date']));?></td>
                 <td>
-                    <button class="btn btn-warning btn-sm">
+                    <a href="/app/index.php?page=transactions&view=<?=$where?>&action=edit&id=<?=$transaction['id']?>"
+                        class="btn btn-warning btn-sm">
                         <i class="bi bi-pencil-square"></i>
-                    </button>
+                    </a>
                     <form method="post" class="form_trx_delete" onclick="return confirm('Yakin ga?')">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="id" value="<?=$transaction['id']?>">
