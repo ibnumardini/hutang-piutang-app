@@ -7,7 +7,8 @@
                 <i class="bi bi-plus-circle"></i> Tambah
             </a>
             <form method="post" class="d-flex">
-                <input class="form-control me-2" name="search" type="search" placeholder="Search by use for" aria-label="Search" value="<?= $search ?? '' ?>">
+                <input class="form-control me-2" name="search" type="search" placeholder="Search by use for"
+                    aria-label="Search" value="<?=$search ?? ''?>">
                 <input type="hidden" name="action" value="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -33,7 +34,7 @@
     <?php
 endif;
 ?>
-    <?= $search ? "<h1 class='mt-4'>Hasil dari: ". $search ."</h1>" : '' ?>
+    <?=$search ? "<h1 class='mt-4'>Hasil dari: " . $search . "</h1>" : ''?>
     <table class="table table-striped table-bordered mt-4">
         <thead class="table-dark">
             <tr>
@@ -55,7 +56,7 @@ endif;
         <?php endif;?>
         <tbody>
             <?php
-            $num = 1;
+            $num = $start_page + 1;
             foreach ($transactions as $transaction):
             ?>
             <tr>
@@ -117,6 +118,37 @@ endif;
             <?php endforeach;?>
         </tbody>
     </table>
+    <?php if ($total_pages > 0): ?>
+    <nav>
+        <ul class="pagination">
+            <?php if ($now > 1): ?>
+            <li class="page-item"><a class="page-link"
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?>">Previous</a></li>
+            <?php endif;?>
+
+            <?php if ($now - 1 > 0): ?>
+            <li class="page-item"><a class="page-link"
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?>"><?=$now - 1?></a>
+            </li>
+            <?php endif?>
+
+            <li class="page-item active"><a class="page-link"
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now?>"><?=$now?></a>
+            </li>
+
+            <?php if ($now + 1 < ($total_pages + 1)): ?>
+            <li class="page-item"><a class="page-link"
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?>"><?=$now + 1?></a>
+            </li>
+            <?php endif?>
+
+            <?php if ($now < $total_pages): ?>
+            <li class="page-item"><a class="page-link"
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?>">Next</a></li>
+            <?php endif;?>
+        </ul>
+    </nav>
+    <?php endif;?>
 </div>
 
 <?php
