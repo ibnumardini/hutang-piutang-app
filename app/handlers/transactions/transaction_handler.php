@@ -43,6 +43,10 @@ if (isset($_GET['search'])) {
     $is_search = true;
 }
 
+if ($is_sorted) {
+    $query .= " ORDER BY use_for $orderBy";
+}
+
 if (isset($_GET['now']) && !$is_search) {
     $query .= " LIMIT $start_page, $per_page";
 } else if (!$mode_single || $is_search) {

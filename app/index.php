@@ -26,6 +26,7 @@ if (isset($_GET['page'])) {
             include_once './handlers/transactions/update_installment_trx_handler.php';
             include_once './handlers/transactions/update_trx_handler.php';
             include_once './handlers/transactions/pagination_handler.php';
+            include_once './handlers/transactions/sort_handler.php';
             include_once './handlers/transactions/transaction_handler.php';
             include_once './handlers/transactions/edit_installment_trx_handler.php';
             include_once './handlers/transactions/edit_trx_handler.php';

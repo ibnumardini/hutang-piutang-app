@@ -6,13 +6,24 @@
             <a href="/app/index.php?page=transactions&view=<?=$where?>&action=create" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Tambah
             </a>
-            <form action="/app/index.php" method="get" class="d-flex">
-                <input type="hidden" name="page" value="transactions">
-                <input type="hidden" name="view" value="<?= $where ?>">
-                <input class="form-control me-2" name="search" type="search" placeholder="Search by use for"
-                    aria-label="Search" value="<?=$search ?? ''?>">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <div class="d-flex gap-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort <?php if($is_sorted) echo " ~ " . $sort ?>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where?>&sort=az">A - Z</a></li>
+                        <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where?>&sort=za">Z - A</a></li>
+                    </ul>
+                </div>
+                <form action="/app/index.php" method="get" class="d-flex">
+                    <input type="hidden" name="page" value="transactions">
+                    <input type="hidden" name="view" value="<?= $where ?>">
+                    <input class="form-control me-2" name="search" type="search" placeholder="Search by use for"
+                        aria-label="Search" value="<?=$search ?? ''?>">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+            </div>
         </div>
     </div>
 
