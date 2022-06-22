@@ -12,13 +12,16 @@
                         Sort <?php if($is_sorted) echo " ~ " . $sort ?>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where?>&sort=az">A - Z</a></li>
-                        <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where?>&sort=za">Z - A</a></li>
+                        <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=az">A - Z</a></li>
+                        <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=za">Z - A</a></li>
                     </ul>
                 </div>
                 <form action="/app/index.php" method="get" class="d-flex">
                     <input type="hidden" name="page" value="transactions">
                     <input type="hidden" name="view" value="<?= $where ?>">
+                    <?php if ($sorted_get) : ?>
+                        <input type="hidden" name="sort" value="<?= $sort_mode ?>">
+                    <?php endif ?>
                     <input class="form-control me-2" name="search" type="search" placeholder="Search by use for"
                         aria-label="Search" value="<?=$search ?? ''?>">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
@@ -148,30 +151,30 @@ endif;
         <ul class="pagination">
             <?php if ($now > 1): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $isset_search ? "&search=$isset_search" : '' ?>">Previous</a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $search_get . $sorted_get ?>">Previous</a>
             </li>
             <?php endif;?>
 
             <?php if ($now - 1 > 0): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $isset_search ? "&search=$isset_search" : '' ?>"><?=$now - 1?></a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $search_get . $sorted_get ?>"><?=$now - 1?></a>
             </li>
             <?php endif?>
 
             <li class="page-item active"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now?>"
-                    <?= $isset_search ? "&search=$isset_search" : '' ?>><?=$now?></a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now?>
+                    <?= $search_get . $sorted_get ?>"><?=$now?></a>
             </li>
 
             <?php if ($now + 1 < ($total_pages + 1)): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $isset_search ? "&search=$isset_search" : '' ?>"><?=$now + 1?></a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $search_get . $sorted_get ?>"><?=$now + 1?></a>
             </li>
             <?php endif?>
 
             <?php if ($now < $total_pages): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $isset_search ? "&search=$isset_search" : '' ?>">Next</a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $search_get . $sorted_get ?>">Next</a>
             </li>
             <?php endif;?>
         </ul>

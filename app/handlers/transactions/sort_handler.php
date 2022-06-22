@@ -17,3 +17,5 @@ if (isset($_GET['sort'])) {
 
     $is_sorted = true;
 }
+
+$sorted_get = $is_sorted ? "&sort=$sort_mode" : '';

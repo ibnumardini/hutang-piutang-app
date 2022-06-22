@@ -43,6 +43,8 @@ if (isset($_GET['search'])) {
     $is_search = true;
 }
 
+$search_get = $isset_search ? "&search=$isset_search" : '';
+
 if ($is_sorted) {
     $query .= " ORDER BY use_for $orderBy";
 }
