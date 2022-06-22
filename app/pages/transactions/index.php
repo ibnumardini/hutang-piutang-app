@@ -6,10 +6,11 @@
             <a href="/app/index.php?page=transactions&view=<?=$where?>&action=create" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Tambah
             </a>
-            <form method="post" class="d-flex">
+            <form action="/app/index.php" method="get" class="d-flex">
+                <input type="hidden" name="page" value="transactions">
+                <input type="hidden" name="view" value="<?= $where ?>">
                 <input class="form-control me-2" name="search" type="search" placeholder="Search by use for"
                     aria-label="Search" value="<?=$search ?? ''?>">
-                <input type="hidden" name="action" value="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
@@ -38,7 +39,7 @@ endif;
     <table class="table table-striped table-bordered mt-4">
         <thead class="table-dark">
             <tr>
-                <th>No</th>
+                <th class="text-center">No</th>
                 <th>Untuk</th>
                 <th>Orang</th>
                 <th>Nominal</th>
@@ -60,7 +61,7 @@ endif;
             foreach ($transactions as $transaction):
             ?>
             <tr>
-                <td><?=$num++?></td>
+                <td class="text-center"><?=$num++?></td>
                 <td><?=$transaction['use_for']?></td>
                 <td><?=$transaction['name']?></td>
                 <td><?=to_rupiah($transaction['nominal'])?></td>
@@ -123,28 +124,28 @@ endif;
         <ul class="pagination">
             <?php if ($now > 1): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?>">Previous</a></li>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $isset_search ? "&search=$isset_search" : '' ?>">Previous</a></li>
             <?php endif;?>
 
             <?php if ($now - 1 > 0): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?>"><?=$now - 1?></a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $isset_search ? "&search=$isset_search" : '' ?>"><?=$now - 1?></a>
             </li>
             <?php endif?>
 
             <li class="page-item active"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now?>"><?=$now?></a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now?>"<?= $isset_search ? "&search=$isset_search" : '' ?>><?=$now?></a>
             </li>
 
             <?php if ($now + 1 < ($total_pages + 1)): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?>"><?=$now + 1?></a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $isset_search ? "&search=$isset_search" : '' ?>"><?=$now + 1?></a>
             </li>
             <?php endif?>
 
             <?php if ($now < $total_pages): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?>">Next</a></li>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $isset_search ? "&search=$isset_search" : '' ?>">Next</a></li>
             <?php endif;?>
         </ul>
     </nav>

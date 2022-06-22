@@ -33,18 +33,24 @@ if (isset($_GET['action'])) {
     }
 }
 
-if (isset($_POST['action'])) {
-    if ($_POST['action'] === 'search') {
-        $search = htmlspecialchars($_POST['search']);
+$is_search = false;
 
-        $query .= " AND t.use_for like '%$search%' ";
-    }
+if (isset($_GET['search'])) {
+    $search = htmlspecialchars($_GET['search']);
+
+    $query .= " AND t.use_for like '%$search%' ";
+
+    $is_search = true;
 }
 
-if (isset($_GET['now'])) {
+if (isset($_GET['now']) && !$is_search) {
     $query .= " LIMIT $start_page, $per_page";
-} else if (!$mode_single) {
-    $query .= " LIMIT 0, $per_page";
+} else if (!$mode_single || $is_search) {
+    if (isset($_GET['now']) && $is_search) {
+        $query .= " LIMIT $start_page, $per_page";
+    } else {
+        $query .= " LIMIT 0, $per_page";
+    }
 }
 
 $select = mysqli_query($con, $query);
