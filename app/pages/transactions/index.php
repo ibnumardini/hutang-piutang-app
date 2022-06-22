@@ -36,6 +36,7 @@
 endif;
 ?>
     <?=$search ? "<h1 class='mt-4'>Hasil dari: " . $search . "</h1>" : ''?>
+    <?=$search ? "<p>Di temukan " . $all_data . " data.</p>" : ''?>
     <table class="table table-striped table-bordered mt-4">
         <thead class="table-dark">
             <tr>
