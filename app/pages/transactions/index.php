@@ -131,7 +131,7 @@ endif;
             <?php endforeach;?>
         </tbody>
     </table>
-    <?php if ($total_pages > 0): ?>
+    <?php if ($total_pages > 1): ?>
     <nav>
         <ul class="pagination">
             <?php if ($now > 1): ?>
