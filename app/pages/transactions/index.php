@@ -45,7 +45,7 @@ endif;
                 <th>Nominal</th>
                 <th>Status</th>
                 <th>Jatuh Tempo</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <?php if (count($transactions) === 0): ?>
@@ -98,7 +98,7 @@ endif;
                     </div>
                 </td>
                 <td><?=date("d F Y H:i:s", strtotime($transaction['due_date']));?></td>
-                <td>
+                <td class="text-center">
                     <a href="/app/index.php?page=transactions&view=<?=$where?>&action=edit&id=<?=$transaction['id']?>"
                         class="btn btn-warning btn-sm">
                         <i class="bi bi-pencil-square"></i>
@@ -114,6 +114,18 @@ endif;
                         data-bs-target="#trx_modal_<?=$transaction['id']?>">
                         <i class="bi bi-eye-fill"></i>
                     </button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-printer"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">PDF</a></li>
+                            <li><a class="dropdown-item" href="#">Excel</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">RAW</a></li>
+                        </ul>
+                    </div>
                 </td>
             </tr>
             <?php endforeach;?>
@@ -124,7 +136,8 @@ endif;
         <ul class="pagination">
             <?php if ($now > 1): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $isset_search ? "&search=$isset_search" : '' ?>">Previous</a></li>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $isset_search ? "&search=$isset_search" : '' ?>">Previous</a>
+            </li>
             <?php endif;?>
 
             <?php if ($now - 1 > 0): ?>
@@ -134,7 +147,8 @@ endif;
             <?php endif?>
 
             <li class="page-item active"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now?>"<?= $isset_search ? "&search=$isset_search" : '' ?>><?=$now?></a>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now?>"
+                    <?= $isset_search ? "&search=$isset_search" : '' ?>><?=$now?></a>
             </li>
 
             <?php if ($now + 1 < ($total_pages + 1)): ?>
@@ -145,7 +159,8 @@ endif;
 
             <?php if ($now < $total_pages): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $isset_search ? "&search=$isset_search" : '' ?>">Next</a></li>
+                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $isset_search ? "&search=$isset_search" : '' ?>">Next</a>
+            </li>
             <?php endif;?>
         </ul>
     </nav>
