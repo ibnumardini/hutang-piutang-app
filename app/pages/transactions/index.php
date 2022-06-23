@@ -12,13 +12,19 @@
                         Sort <?php if($is_sorted) echo " ~ " . $sort ?>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=az">A - Z</a></li>
-                        <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=za">Z - A</a></li>
+                        <li>
+                            <a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=az"><i class="bi bi-sort-down"></i> A - Z</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=za"><i class="bi bi-sort-up"></i> Z - A</a>
+                        </li>
                         <?php if ($sorted_get) : ?>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $search_get?>">Clear Sorting</a></li>
+                            <li>
+                                <a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $search_get?>"><i class="bi bi-trash"></i> Clear Sorting</a>
+                            </li>
                         <?php endif ?>
                     </ul>
                 </div>
