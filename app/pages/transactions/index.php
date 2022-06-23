@@ -14,6 +14,12 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=az">A - Z</a></li>
                         <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=za">Z - A</a></li>
+                        <?php if ($sorted_get) : ?>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $search_get?>">Clear Sorting</a></li>
+                        <?php endif ?>
                     </ul>
                 </div>
                 <form action="/app/index.php" method="get" class="d-flex">
@@ -162,8 +168,7 @@ endif;
             <?php endif?>
 
             <li class="page-item active"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now?>
-                    <?= $search_get . $sorted_get ?>"><?=$now?></a>
+                    href="/app/index.php?page=transactions&view=debt<?= $now_get . $search_get . $sorted_get ?>"><?=$now?></a>
             </li>
 
             <?php if ($now + 1 < ($total_pages + 1)): ?>

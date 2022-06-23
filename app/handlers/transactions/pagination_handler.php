@@ -33,3 +33,5 @@ $per_page = 5;
 $total_pages = ceil($all_data / $per_page);
 
 $start_page = ($now - 1) * $per_page;
+
+$now_get = $now ? "&now=$now" : '';
