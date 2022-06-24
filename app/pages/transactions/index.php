@@ -153,6 +153,9 @@ endif;
                             <li><a class="dropdown-item" href="#">RAW</a></li>
                         </ul>
                     </div>
+                    <button class="btn btn-success btn-sm">
+                        <i class="bi bi-send"></i>
+                    </button>
                 </td>
             </tr>
             <?php endforeach;?>
