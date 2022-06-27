@@ -13,10 +13,10 @@
                     </button>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=az"><i class="bi bi-sort-down"></i> A - Z</a>
+                            <a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $search_get?>&sort=az"><i class="bi bi-sort-down"></i> A - Z</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $sorted_get . $search_get?>&sort=za"><i class="bi bi-sort-up"></i> Z - A</a>
+                            <a class="dropdown-item" href="/app/index.php?page=transactions&view=<?=$where . $search_get?>&sort=za"><i class="bi bi-sort-up"></i> Z - A</a>
                         </li>
                         <?php if ($sorted_get) : ?>
                             <li>
