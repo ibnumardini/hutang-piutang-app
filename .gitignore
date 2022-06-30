@@ -1,3 +1,7 @@
 /public/avatar/*
 !/public/avatar/.gitkeep
+/public/exports/prf/*
+!/public/exports/prf/.gitkeep
+/public/exports/spreadsheet/*
+!/public/exports/spreadsheet/.gitkeep
 /vendor/
