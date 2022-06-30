@@ -169,29 +169,29 @@ endif;
         <ul class="pagination">
             <?php if ($now > 1): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $search_get . $sorted_get ?>">Previous</a>
+                    href="/app/index.php?page=transactions&view=<?= $where ?>&now=<?=$now - 1?><?= $search_get . $sorted_get ?>">Previous</a>
             </li>
             <?php endif;?>
 
             <?php if ($now - 1 > 0): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now - 1?><?= $search_get . $sorted_get ?>"><?=$now - 1?></a>
+                    href="/app/index.php?page=transactions&view=<?= $where ?>&now=<?=$now - 1?><?= $search_get . $sorted_get ?>"><?=$now - 1?></a>
             </li>
             <?php endif?>
 
             <li class="page-item active"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt<?= $now_get . $search_get . $sorted_get ?>"><?=$now?></a>
+                    href="/app/index.php?page=transactions&view=<?= $where ?><?= $now_get . $search_get . $sorted_get ?>"><?=$now?></a>
             </li>
 
             <?php if ($now + 1 < ($total_pages + 1)): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $search_get . $sorted_get ?>"><?=$now + 1?></a>
+                    href="/app/index.php?page=transactions&view=<?= $where ?>&now=<?=$now + 1?><?= $search_get . $sorted_get ?>"><?=$now + 1?></a>
             </li>
             <?php endif?>
 
             <?php if ($now < $total_pages): ?>
             <li class="page-item"><a class="page-link"
-                    href="/app/index.php?page=transactions&view=debt&now=<?=$now + 1?><?= $search_get . $sorted_get ?>">Next</a>
+                    href="/app/index.php?page=transactions&view=<?= $where ?>&now=<?=$now + 1?><?= $search_get . $sorted_get ?>">Next</a>
             </li>
             <?php endif;?>
         </ul>
