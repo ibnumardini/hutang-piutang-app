@@ -51,11 +51,9 @@
                                             <td class="text-center align-middle">
                                                 <a href="/app/index.php?page=transactions&view=<?=$where . $now_get?>&action=download&file=<?=$spreadsheet?>"
                                                     class="btn btn-success btn-sm"><i class="bi bi-download"></i>
-                                                    Download
                                                 </a>
                                                 <a href="/app/index.php?page=transactions&view=<?=$where . $now_get?>&action=remove&file=<?=$spreadsheet?>"
                                                     class="btn btn-danger btn-sm" onclick="return confirm('yakin nih?')"><i class="bi bi-trash3-fill"></i>
-                                                    Delete
                                                 </a>
                                             </td>
                                         </tr>
