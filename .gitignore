@@ -1,2 +1,3 @@
 /public/avatar/*
 !/public/avatar/.gitkeep
+/vendor/
