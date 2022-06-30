@@ -1,5 +1,6 @@
 <?php
 
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -49,19 +50,46 @@ if (isset($_POST['action'])) {
                         array_push($rowRange, $char);
                     }
 
-                    
-                    foreach ($rowRange as $char) {
+                    $newRowRange = [];
+                    for ($i = 0; $i < count($val); $i++) {
+                        $newRowRange[] = [
+                            "char" => $rowRange[$i],
+                            "charKey" => array_keys($val)[$i],
+                            "charVal" => array_values($val)[$i],
+                        ];
+                    }
+
+                    foreach ($newRowRange as $row) {
                         $colRange = $key_trx;
 
-                        $sheet->setCellValue($char . ++$key_trx, $val);
+                        if ($colRange === 0) {
+                            $sheet->setCellValue($row["char"] . 1, $row["charKey"]);
+                        }
+
+                        /**
+                         * tambah lagi agar data pertama,
+                         * tidak tertimpa oleh title.
+                         */
+                        $newColRange = ++$colRange;
+
+                        $sheet->setCellValue($row["char"] . ++$newColRange, $row["charVal"]);
                     }
                 }
 
                 $filename = date('Ymdhis') . "_" . uniqid(strtoupper($where) . "_") . "_" . $user['username'] . ".xlsx";
                 $filepath = '../public/exports/spreadsheet/' . $filename;
 
-                // $writer = new Xlsx($spreadsheet);
-                // $writer->save($filepath);
+                // save to disk
+                $writer = new Xlsx($spreadsheet);
+                $writer->save($filepath);
+
+                // set header for redirect
+                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+                header('Content-Disposition: attachment;filename="' . $filename . '"');
+
+                // download
+                $ioWriter = IOFactory::createWriter($spreadsheet, 'Xlsx');
+                $ioWriter->save('php://output');
             }
         } else {
             $alert = ['danger', $errors];
