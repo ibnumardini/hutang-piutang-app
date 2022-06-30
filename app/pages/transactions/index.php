@@ -7,6 +7,9 @@
                 <i class="bi bi-plus-circle"></i> Tambah
             </a>
             <div class="d-flex gap-2">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportModal">
+                Export
+                </button>
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Sort <?php if($is_sorted) echo " ~ " . $sort ?>
@@ -200,3 +203,5 @@ endif;
 foreach ($transactions as $transaction) {
     include './pages/transactions/modal_detail.php';
 }
+
+include_once './pages/transactions/modal_export.php';

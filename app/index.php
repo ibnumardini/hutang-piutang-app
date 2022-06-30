@@ -30,6 +30,7 @@ if (isset($_GET['page'])) {
             include_once './handlers/transactions/transaction_handler.php';
             include_once './handlers/transactions/edit_installment_trx_handler.php';
             include_once './handlers/transactions/edit_trx_handler.php';
+            include_once './handlers/transactions/export_spreadsheet.php';
             break;
         default:
             include_once './handlers/home/home_handler.php';
