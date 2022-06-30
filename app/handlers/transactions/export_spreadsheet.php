@@ -119,13 +119,20 @@ if (is_dir($dir_spreadsheet_path)) {
                 continue;
             }
 
-            $created_at = explode("_", $file)[0];
+            $arrFilename = explode("_", $file);
+
+            $created_at = $arrFilename[0];
             $created_at = date_create_from_format("Ymdhis", $created_at)->format("Y-m-d h:i:s");
 
-            array_push($listSpreadsheets, [
-                "filename" => $file,
-                "exported_at" => $created_at,
-            ]);
+            $fileType = strtolower($arrFilename[1]);
+            $fileOwner = strtolower(explode(".", $arrFilename[3])[0]);
+
+            if ($where === $fileType && $user['username'] === $fileOwner) {
+                array_push($listSpreadsheets, [
+                    "filename" => $file,
+                    "exported_at" => $created_at,
+                ]);
+            }
         }
 
         closedir($dh);
