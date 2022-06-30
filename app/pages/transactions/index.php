@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="mb-3">Transactions - <?=$where === "debt" ? "Hutang" : "Piutang"?></h1>
 
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-between">
             <a href="/app/index.php?page=transactions&view=<?=$where?>&action=create" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Tambah
@@ -66,7 +66,7 @@ endif;
 ?>
     <?=$search ? "<h1 class='mt-4'>Hasil dari: " . $search . "</h1>" : ''?>
     <?=$search ? "<p>Di temukan " . $all_data . " data.</p>" : ''?>
-    <table class="table table-striped table-bordered mt-4">
+    <table class="table table-striped table-bordered">
         <thead class="table-dark">
             <tr>
                 <th class="text-center">No</th>
