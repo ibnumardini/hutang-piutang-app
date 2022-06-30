@@ -84,7 +84,7 @@ if (isset($_POST['action']) || isset($_GET['action'])) {
                 $writer = new Xlsx($spreadsheet);
                 $writer->save($filepath);
 
-                $alert = ['success', ['Sukses, untuk mendownload ke lokal komputer, cek di bagian download history!']];
+                $alert = ['success', ['Sukses, untuk mendownload ke lokal komputer, cek di bagian <span class="text-decoration-underline">Export History</span>!']];
             }
         } else {
             $alert = ['danger', $errors];
