@@ -1,10 +1,11 @@
 <?php
 
-use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-if (isset($_POST['action'])) {
+$dir_spreadsheet_path = "../public/exports/spreadsheet/";
+
+if (isset($_POST['action']) || isset($_GET['action'])) {
     if ($_POST['action'] === "export_spreadsheet") {
         $start_date = htmlspecialchars($_POST['start_date']);
         $end_date = htmlspecialchars($_POST['end_date']);
@@ -77,22 +78,56 @@ if (isset($_POST['action'])) {
                 }
 
                 $filename = date('Ymdhis') . "_" . uniqid(strtoupper($where) . "_") . "_" . $user['username'] . ".xlsx";
-                $filepath = '../public/exports/spreadsheet/' . $filename;
+                $filepath = $dir_spreadsheet_path . $filename;
 
                 // save to disk
                 $writer = new Xlsx($spreadsheet);
                 $writer->save($filepath);
 
-                // set header for redirect
-                header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-                header('Content-Disposition: attachment;filename="' . $filename . '"');
-
-                // download
-                $ioWriter = IOFactory::createWriter($spreadsheet, 'Xlsx');
-                $ioWriter->save('php://output');
+                $alert = ['success', ['Sukses, untuk mendownload ke lokal komputer, cek di bagian download history!']];
             }
         } else {
             $alert = ['danger', $errors];
         }
+    } else if ($_GET['action'] === 'download') {
+        $file = htmlspecialchars($_GET['file']);
+
+        if (file_exists($dir_spreadsheet_path . $file)) {
+            header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            header('Content-Disposition: attachment;filename="' . $file . '"');
+
+            readfile($dir_spreadsheet_path . $file);
+        }
+    } else if ($_GET['action'] === 'remove') {
+        $file = htmlspecialchars($_GET['file']);
+
+        if (file_exists($dir_spreadsheet_path . $file)) {
+            unlink($dir_spreadsheet_path . $file);
+
+            $alert = ['success', ['Export file deleted!']];
+        }
+    }
+}
+
+$listSpreadsheets = [];
+
+if (is_dir($dir_spreadsheet_path)) {
+    if ($dh = opendir($dir_spreadsheet_path)) {
+        $exceptContent = ['.', '..', '.gitkeep'];
+        while (($file = readdir($dh)) !== false) {
+            if (in_array($file, $exceptContent)) {
+                continue;
+            }
+
+            $created_at = explode("_", $file)[0];
+            $created_at = date_create_from_format("Ymdhis", $created_at)->format("Y-m-d h:i:s");
+
+            array_push($listSpreadsheets, [
+                "filename" => $file,
+                "exported_at" => $created_at,
+            ]);
+        }
+
+        closedir($dh);
     }
 }
