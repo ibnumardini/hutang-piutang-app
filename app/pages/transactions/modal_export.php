@@ -1,7 +1,7 @@
 <form method="post">
     <div class="modal fade" id="exportModal" tabindex="-1" aria-labelledby="exportModal" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content" id="modal-content__exports">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exportModalLabel">Export Data</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -31,8 +31,8 @@
                                 </button>
                             </h2>
                             <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-                            aria-labelledby="panelsStayOpen-headingTwo">
-                            <div class="accordion-body">
+                                aria-labelledby="panelsStayOpen-headingTwo">
+                                <div class="accordion-body">
                                     <?php if(count($listSpreadsheets) > 0) : ?>
                                     <table class="table table-bordered">
                                         <tr>
@@ -46,36 +46,43 @@
                                             <td class="align-middle">
                                                 <?= $spreadsheet['filename'] ?>
                                                 <br>
-                                                <span class="form-text">Exported at: <?= $spreadsheet['exported_at'] ?></span>
+                                                <span class="form-text">Exported at:
+                                                    <?= $spreadsheet['exported_at'] ?></span>
                                             </td>
                                             <td class="text-center align-middle">
                                                 <a href="/app/index.php?page=transactions&view=<?=$where . $now_get?>&action=download&file=<?=$spreadsheet['filename']?>"
                                                     class="btn btn-success btn-sm"><i class="bi bi-download"></i>
                                                 </a>
                                                 <a href="/app/index.php?page=transactions&view=<?=$where . $now_get?>&action=remove&file=<?=$spreadsheet['filename']?>"
-                                                    class="btn btn-danger btn-sm" onclick="return confirm('yakin nih?')"><i class="bi bi-trash3-fill"></i>
+                                                    class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('yakin nih?')"><i
+                                                        class="bi bi-trash3-fill"></i>
                                                 </a>
                                             </td>
                                         </tr>
                                         <?php endforeach; ?>
                                     </table>
                                     <?php else: ?>
-                                        <div class="alert alert-info mb-0"><strong>Belum ada data yang di Export!</strong!</div>
-                                    <?php endif; ?>
+                                    <div class="alert alert-info mb-0"><strong>Belum ada data yang di Export!</strong!<
+                                                /div>
+                                            <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <input type="hidden" name="action" value="export_spreadsheet">
-                    <button type="submit" class="btn btn-success">
-                        <i class="bi bi-file-earmark-excel-fill"></i>
-                        Spreadsheet
-                    </button>
+                    <div class="modal-footer d-flex">
+                        <input type="hidden" name="action" v-model="export_action">
+                        <select class="form-select w-25" v-model="export_action">
+                            <option value="export_pdf" :selected="export_action === 'export_pdf'">PDF</option>
+                            <option value="export_spreadsheet" :selected="export_action === 'export_spreadsheet'">Spreadsheet</option>
+                        </select>
+                        <button type="submit" class="btn btn-success">
+                            Export
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </form>

@@ -44,7 +44,6 @@ include_once './templates/header.php';
 include_once './templates/navbar.php';
 
 if (isset($_GET['page'])) {
-
     switch ($_GET['page']) {
         case 'most-freq-trx':
             include_once './pages/persons/index.php';
@@ -89,6 +88,17 @@ if (isset($_GET['page'])) {
     }
 } else {
     include_once './pages/dashboard.php';
+}
+
+$jsScripts = [];
+
+// load JS (javascript)
+if (isset($_GET['page'])) {
+    switch ($_GET['page']) {
+        case 'transactions':
+            include_once './js/transactions.php';
+            break;
+    }
 }
 
 include_once './templates/footer.php';
