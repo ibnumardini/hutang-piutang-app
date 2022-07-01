@@ -54,7 +54,7 @@
                                                     class="btn btn-success btn-sm"><i class="bi bi-download"></i>
                                                 </a>
                                                 <a href="/app/index.php?page=transactions&view=<?=$where . $now_get?>&action=remove&file=<?=$spreadsheet['filename']?>"
-                                                    class="btn btn-danger btn-sm"
+                                                    class="btn btn-danger btn-sm mx-1"
                                                     onclick="return confirm('yakin nih?')"><i
                                                         class="bi bi-trash3-fill"></i>
                                                 </a>
