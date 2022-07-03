@@ -3,6 +3,9 @@
 // load vendor
 require '../vendor/autoload.php';
 
+// load classes
+include_once './classes/autoload.php';
+
 $session_user_id = $_SESSION['user']['id'];
 
 $query = mysqli_query($con, "SELECT * FROM users WHERE id = '$session_user_id'");
