@@ -13,6 +13,13 @@ $user = mysqli_fetch_assoc($query);
 
 $page_now = isset($_GET['page']) ? $_GET['page'] : 'home';
 
+function view_alert()
+{
+    global $alert;
+
+    include_once './templates/alert.php';
+}
+
 function to_rupiah($number)
 {
     $result = "Rp " . number_format(empty($number) ? 0 : $number, 2, ',', '.');
