@@ -65,7 +65,7 @@
                 <input type="hidden" name="type" value="<?= $where ?>">
                 <input type="hidden" name="action" value="update_trxt">
                 <input type="hidden" name="trx_id" value="<?= $transaction['id'] ?>">
-                <button class="btn btn-primary">Update <?=$title?></button>
+                <button class="btn btn-primary me-1">Update <?=$title?></button>
                 <a class="btn btn-danger" href="/app/index.php?page=transactions&view=<?=$where?>">Cancel</a>
             </form>
         </div>
