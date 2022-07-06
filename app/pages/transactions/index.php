@@ -8,7 +8,7 @@
             </a>
             <div class="d-flex gap-2">
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exportModal">
-                Export
+                Export  <i class="bi bi-printer"></i>
                 </button>
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -128,34 +128,22 @@ endif;
                     </div>
                 </td>
                 <td><?=date("d F Y H:i:s", strtotime($transaction['due_date']));?></td>
-                <td class="text-center">
+                <td class="text-center align-middle">
                     <a href="/app/index.php?page=transactions&view=<?=$where?>&action=edit&id=<?=$transaction['id']?>"
-                        class="btn btn-warning btn-sm">
+                        class="btn btn-warning btn-sm me-1">
                         <i class="bi bi-pencil-square"></i>
                     </a>
-                    <form method="post" class="form_trx_delete" onclick="return confirm('Yakin ga?')">
+                    <form method="post" class="form_trx_delete me-1" onclick="return confirm('Yakin ga?')">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="id" value="<?=$transaction['id']?>">
                         <button type="submit" class="btn btn-danger btn-sm">
                             <i class="bi bi-trash3-fill"></i>
                         </button>
                     </form>
-                    <button class="btn btn-info btn-sm" type="button" data-bs-toggle="modal"
+                    <button class="btn btn-info btn-sm me-1" type="button" data-bs-toggle="modal"
                         data-bs-target="#trx_modal_<?=$transaction['id']?>">
                         <i class="bi bi-eye-fill"></i>
                     </button>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="bi bi-printer"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">PDF</a></li>
-                            <li><a class="dropdown-item" href="#">Excel</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">RAW</a></li>
-                        </ul>
-                    </div>
                     <button class="btn btn-success btn-sm">
                         <i class="bi bi-send"></i>
                     </button>
