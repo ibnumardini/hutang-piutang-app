@@ -6,3 +6,11 @@
 .form_trx_delete {
   display: inline;
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}

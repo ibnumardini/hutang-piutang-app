@@ -3,7 +3,7 @@
 
     <div class="row mb-3">
         <div class="col-md-12 d-flex justify-content-between">
-            <a href="/app/index.php?page=transactions&view=<?=$where?>&action=create" class="btn btn-primary">
+            <a href="/app/index.php?page=transactions&view=<?=$where?>&action=select-person" class="btn btn-primary">
                 <i class="bi bi-plus-circle"></i> Tambah
             </a>
             <div class="d-flex gap-2">

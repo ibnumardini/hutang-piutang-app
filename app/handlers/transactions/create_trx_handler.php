@@ -1,39 +1,9 @@
 <?php
 
-function insert_persons($con, $name)
-{
-    global $session_user_id;
-
-    $person = is_person_exists($con, $name);
-    if ($person[0]) {
-        return $person[1];
-    }
-
-    $insert = mysqli_query($con, "INSERT INTO persons(name, user_id) VALUES('$name', '$session_user_id')");
-    $last_insert_id = mysqli_insert_id($con);
-
-    return $last_insert_id;
-}
-
-function is_person_exists($con, $name)
-{
-    global $session_user_id;
-
-    $person = mysqli_query($con, "SELECT * FROM persons WHERE name='$name' AND user_id='$session_user_id'");
-    $row = mysqli_fetch_assoc($person);
-
-    if (mysqli_num_rows($person) > 0) {
-        return [true, $row['id']];
-    }
-
-    return [false];
-}
-
 if (isset($_POST["action"])) {
     if ($_POST["action"] === "create_trx") {
         $use_for = htmlspecialchars($_POST['use_for']);
-        $fav_person = htmlspecialchars($_POST['fav_person']);
-        $new_person = htmlspecialchars($_POST['new_person']);
+        $person_id = htmlspecialchars($_POST['person_id']);
         $nominal = htmlspecialchars($_POST['nominal']);
 
         $transaction_at = htmlspecialchars($_POST['transaction_at']);
@@ -45,12 +15,6 @@ if (isset($_POST["action"])) {
         $due_date = $due_date . ":00";
 
         $type = htmlspecialchars($_POST['type']);
-
-        if (empty($fav_person)) {
-            unset($_POST['fav_person']);
-        } else {
-            unset($_POST['new_person']);
-        }
 
         $errors = [];
 
@@ -67,11 +31,7 @@ if (isset($_POST["action"])) {
         }
 
         if (empty($errors)) {
-            if (empty($fav_person)) {
-                $fav_person = insert_persons($con, $new_person);
-            }
-
-            $insert = mysqli_query($con, "INSERT INTO `transactions`(`type`, `user_id`, `use_for`, `person_id`, `nominal`, `transaction_at`, `due_date`) VALUES ('$type','$session_user_id','$use_for','$fav_person','$nominal','$transaction_at','$due_date')");
+            $insert = mysqli_query($con, "INSERT INTO `transactions`(`type`, `user_id`, `use_for`, `person_id`, `nominal`, `transaction_at`, `due_date`) VALUES ('$type','$session_user_id','$use_for','$person_id','$nominal','$transaction_at','$due_date')");
 
             if ($insert) {
                 $alert = ['success', ['Data di tambahkan!']];
@@ -85,9 +45,10 @@ if (isset($_POST["action"])) {
 }
 
 // to show list person
-function get_all_person($con)
+function get_all_person()
 {
     global $session_user_id;
+    global $con;
 
     $person = mysqli_query($con, "SELECT * FROM persons WHERE user_id='$session_user_id'");
 
@@ -100,4 +61,20 @@ function get_all_person($con)
     return $persons;
 }
 
-$persons = get_all_person($con);
+function get_person_by_id($person_id)
+{
+    foreach (get_all_person() as $value) {
+        if ($person_id === $value['id']) {
+            return $value;
+        }
+    }
+}
+
+$persons = get_all_person();
+
+// just call when person id exists
+if (isset($_GET['person_id'])) {
+    $person_id = htmlspecialchars($_GET['person_id']);
+
+    $personById = get_person_by_id($person_id);
+}
