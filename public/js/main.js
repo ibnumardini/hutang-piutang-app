@@ -6,4 +6,4 @@ createApp({
       export_action: "export_pdf",
     };
   },
-}).mount("#modal-content__exports");
+}).mount("#vueApp");
