@@ -63,26 +63,28 @@
                                         <?php endforeach; ?>
                                     </table>
                                     <?php else: ?>
-                                    <div class="alert alert-info mb-0"><strong>Belum ada data yang di Export!</strong!<
-                                                /div>
-                                            <?php endif; ?>
+                                    <div class="alert alert-info mb-0">
+                                        <strong>Belum ada data yang di Export!</strong>
                                     </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer d-flex">
-                        <input type="hidden" name="action" v-model="export_action">
-                        <select class="form-select w-25" v-model="export_action">
-                            <option value="export_pdf" :selected="export_action === 'export_pdf'">PDF</option>
-                            <option value="export_spreadsheet" :selected="export_action === 'export_spreadsheet'">Spreadsheet</option>
-                        </select>
-                        <button type="submit" class="btn btn-success">
-                            Export
-                        </button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+                </div>
+                <div class="modal-footer d-flex">
+                    <input type="hidden" name="action" v-model="export_action">
+                    <select class="form-select w-25" v-model="export_action">
+                        <option value="export_pdf" :selected="export_action === 'export_pdf'">PDF</option>
+                        <option value="export_spreadsheet" :selected="export_action === 'export_spreadsheet'">
+                            Spreadsheet</option>
+                    </select>
+                    <button type="submit" class="btn btn-success">
+                        Export
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>
 </form>
