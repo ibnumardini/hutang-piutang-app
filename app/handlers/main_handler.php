@@ -37,3 +37,8 @@ function fmt_to_timestamp($date)
 
     return $date;
 }
+
+function fmt_to_readable_date($datetime)
+{
+    return date("d F Y H:i:s", strtotime($datetime));
+}

@@ -4,6 +4,8 @@ if (isset($_POST["action"])) {
     if ($_POST["action"] === "create_trx") {
         $use_for = htmlspecialchars($_POST['use_for']);
         $person_id = htmlspecialchars($_POST['person_id']);
+        $person_name = htmlspecialchars($_POST['person_name']);
+        $person_wa_num = htmlspecialchars($_POST['person_wa_num']);
         $nominal = htmlspecialchars($_POST['nominal']);
 
         $transaction_at = htmlspecialchars($_POST['transaction_at']);
@@ -35,6 +37,20 @@ if (isset($_POST["action"])) {
 
             if ($insert) {
                 $alert = ['success', ['Data di tambahkan!']];
+
+                $message = "Halo " . ucwords($person_name) . ", kamu telah membuat transaksi $title :\n
+Digunakan: $use_for
+Jumlah: " . to_rupiah($nominal) . "
+Jatuh Tempo: " . fmt_to_readable_date($due_date) . "\n
+Hormat Kami
+Hutang Piutang Team.";
+
+                $notif = new Whatsapp();
+                $notif->setKey($user['wa_key']);
+                $notif->setDestination($person_wa_num);
+                $notif->setMessage($message);
+                [$status] = $notif->send();
+
             } else {
                 $alert = ['danger', 'Data di gagal tambahkan!'];
             }

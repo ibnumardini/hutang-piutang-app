@@ -45,6 +45,7 @@
                 </div>
                 <input type="hidden" name="type" value="<?= $where ?>">
                 <input type="hidden" name="person_id" value="<?= $personById['id'] ?>">
+                <input type="hidden" name="person_wa_num" value="<?= $personById['wa_num'] ?>">
                 <input type="hidden" name="action" value="create_trx">
                 <button class="btn btn-primary me-1">Buat <?=$title?></button>
                 <a class="btn btn-danger" href="/app/index.php?page=transactions&view=<?=$where?>">Cancel</a>
